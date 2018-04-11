@@ -1,5 +1,6 @@
 import unittest
 
+from pages.academy_m30_page import AcademyMeine30Page
 from pages.page_example import PageExample
 from pages.sc_registration import ScRegistationPage
 from pages.academy_ospt_page import AcademyOsptPage
@@ -20,30 +21,34 @@ class TestExample(ParametrizedTestCase):
         driver.get('https://staging.pippajean.com/de/walter/')
         page_example = PageExample(driver)
         sc_registration = ScRegistationPage(driver)
-        # page_example.click_search_button()
         sc_registration.register_sc()
 
-        #
+
         # page_example.click_sign_in_button()
         # page_example.enter_email(email)
         # page_example.enter_password(password)
         # page_example.click_login_button()
 
-        # tema scenariul 1
+        # tema scenariul 1 todo
         # page_example.enter_code(text_search)
         # page_example.click_search_button()
         # page_example.get_search_result(text_search1)
 
+        # meine 30 todo
+        driver.get('https://staging-academy.pippajean.com/courses/meine-ersten-30-tage/')
+        academy_m30_page = AcademyMeine30Page(driver)
+        academy_m30_page.save_screen()
+        academy_m30_page.complete_course()
 
-
-        driver.get('https://staging-academy.pippajean.com/courses/online-style-party-training/')
-        academy_ospt_page = AcademyOsptPage(driver)
-        academy_ospt_page.click_mache_dieses_training_button()
-        academy_ospt_page.click_lesson1()
-        academy_ospt_page.click_mark_complete_button()
-        academy_ospt_page.click_mark_complete_button()
-        academy_ospt_page.click_quiz_on_lesson3()
-        academy_ospt_page.click_start_quiz_button()
+        # ospm training todo
+        # driver.get('https://staging-academy.pippajean.com/courses/online-style-party-training/')
+        # academy_ospt_page = AcademyOsptPage(driver)
+        # academy_ospt_page.click_mache_dieses_training_button()
+        # academy_ospt_page.click_lesson1()
+        # academy_ospt_page.click_mark_complete_button()
+        # academy_ospt_page.click_mark_complete_button()
+        # academy_ospt_page.click_quiz_on_lesson3()
+        # academy_ospt_page.click_start_quiz_button()
         # academy_ospt_page.lesson_quiz(3)
 
 

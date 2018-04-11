@@ -173,3 +173,11 @@ class WebdriverCommands(ParametrizedTestCase):
 
     # def change_element_class(self, el_class, element):
     #     self.driver.execute_script("arguments[0].setAttribute('class','bordered-box pitch clearfix starterkit-wrapper-active')", element)
+
+    def save_screenshot(self, path):
+        '''
+            Takes screenshot of webdriver window.
+        :param path: where do you want the file to be saved
+        :return:
+        '''
+        self.driver.save_screenshot(path)
