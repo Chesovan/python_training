@@ -1,9 +1,12 @@
 from tools.webdriver_commands import WebdriverCommands
+import names
+
+
 SEARCH_FIELD = {'css_selector': "#search", 'description': 'search field'}
 SEARCH_FIELD_BUTTON = {'css_selector': "#search_mini_form > div > button", 'description': 'search button'}
 SIGN_IN_BUTTON = {'css_selector': "div.quick-wrap > div > ul > li > a", 'description': 'sign in button'}
 EMAIL_FIELD = {'css_selector': "#email", 'description': 'email input field'}
-PASSWORD_FIELD = {'css_selector': "#pass", 'description': 'email input field'}
+PASSWORD_FIELD = {'css_selector': "#pass", 'description': 'password field'}
 LOGIN_BUTTON = {'css_selector': "#send2", 'description': 'login button'}
 FIRST_SEARCH_RESULT = {'css_selector': ".container-fluid > div > ul > li:first-child > a", 'description': 'first search result'}
 FIRST_SEARCH_RESULT_PRICE = {'css_selector': ".container-fluid > div > ul > li:first-child .price", 'description': ''}
@@ -35,6 +38,13 @@ class PageExample:
     def click_login_button(self):
         self.page.click_element(LOGIN_BUTTON['css_selector'], LOGIN_BUTTON['description'])
 
+    def user_login(self, email, password):
+        self.click_sign_in_button()
+        self.enter_email(email)
+        self.enter_password(password)
+        self.click_login_button()
+
+
     def verify_title(self):
         page_title = self.page.return_title()
         self.page.assertTrue('Title' == page_title, 'Expected: {}, received: {}'.format('Title', page_title))
@@ -46,6 +56,7 @@ class PageExample:
         self.page.click_element(SEARCH_FIELD_BUTTON['css_selector'], SEARCH_FIELD_BUTTON['description'])
 
     results_list_product_price = 0
+
     def get_search_result(self, x):
         items = self.page.get_web_elements('.container-fluid > div > ul','list')
         for item in items:

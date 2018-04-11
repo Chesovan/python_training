@@ -1,6 +1,7 @@
 import unittest
 
 from pages.page_example import PageExample
+from pages.sc_registration import ScRegistationPage
 from pages.academy_ospt_page import AcademyOsptPage
 from tools.parametrized_test_case import ParametrizedTestCase
 
@@ -16,18 +17,24 @@ class TestExample(ParametrizedTestCase):
             self.driver is a parameter inherited from ParametrizedTestCase
         '''
         driver = self.driver
-        driver.get('https://staging.pippajean.com/de/')
+        driver.get('https://staging.pippajean.com/de/walter/')
         page_example = PageExample(driver)
+        sc_registration = ScRegistationPage(driver)
         # page_example.click_search_button()
-        page_example.click_sign_in_button()
-        page_example.enter_email(email)
-        page_example.enter_password(password)
-        page_example.click_login_button()
+        sc_registration.register_sc()
+
+        #
+        # page_example.click_sign_in_button()
+        # page_example.enter_email(email)
+        # page_example.enter_password(password)
+        # page_example.click_login_button()
 
         # tema scenariul 1
         # page_example.enter_code(text_search)
         # page_example.click_search_button()
         # page_example.get_search_result(text_search1)
+
+
 
         driver.get('https://staging-academy.pippajean.com/courses/online-style-party-training/')
         academy_ospt_page = AcademyOsptPage(driver)
@@ -37,10 +44,9 @@ class TestExample(ParametrizedTestCase):
         academy_ospt_page.click_mark_complete_button()
         academy_ospt_page.click_quiz_on_lesson3()
         academy_ospt_page.click_start_quiz_button()
-        academy_ospt_page.lesson_quiz(3)
+        # academy_ospt_page.lesson_quiz(3)
 
-        # home_page = HomePage(driver)
-        # home_page.input_search_field('Search text')
+
 
     @unittest.skip('Reason')
     def test_example2(self):

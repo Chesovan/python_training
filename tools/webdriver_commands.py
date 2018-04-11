@@ -2,6 +2,8 @@ from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support.ui import Select
+
 import unittest
 
 from tools.parametrized_test_case import ParametrizedTestCase
@@ -158,3 +160,16 @@ class WebdriverCommands(ParametrizedTestCase):
         element = self.driver.find_element_by_id(selector_id)
         action = ActionChains(self.driver)
         action.move_to_element(element).perform()
+
+    def move_to_element_css(self, selector):
+        element = self.driver.find_element_by_css_selector(selector)
+        action = ActionChains(self.driver)
+        action.move_to_element(element).perform()
+
+    def select_from_dropdown(self, drop_id, x):
+        select = Select(self.driver.find_element_by_css_selector(drop_id))
+        # select by value
+        select.select_by_value(x)
+
+    # def change_element_class(self, el_class, element):
+    #     self.driver.execute_script("arguments[0].setAttribute('class','bordered-box pitch clearfix starterkit-wrapper-active')", element)
