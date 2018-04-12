@@ -133,7 +133,8 @@ class ScRegistationPage:
 
         self.click_submit_button()
 
-        self.enter_sc_ref('wpsc')
+        context = 'wpsc{}'.format(lastname[:3].lower())
+        self.enter_sc_ref(context)
 
         self.click_submit_button()
 
@@ -149,5 +150,7 @@ class ScRegistationPage:
         self.click_submit_confirmation_button()
 
         self.click_back_to_homepage()
+
+        print('A new SC was created: {}'.format(email))
 
         self.pageExaple.user_login(email, password)

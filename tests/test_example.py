@@ -6,7 +6,7 @@ from pages.sc_registration import ScRegistationPage
 from pages.academy_ospt_page import AcademyOsptPage
 from tools.parametrized_test_case import ParametrizedTestCase
 
-email = "sc.wp3@evozon.com"
+email = "antionette.wells@pwp-academy.com"
 password = "123qwe"
 text_search = "Fascination"
 text_search1 = "Earrings"
@@ -23,7 +23,7 @@ class TestExample(ParametrizedTestCase):
         sc_registration = ScRegistationPage(driver)
         sc_registration.register_sc()
 
-
+        #
         # page_example.click_sign_in_button()
         # page_example.enter_email(email)
         # page_example.enter_password(password)

@@ -9,10 +9,10 @@ TRAINING_3 = {'css_selector': "div.post-530 > a", 'description': 'Teamaufbau Tra
 THEMEN_1 = {'css_selector': "ul > li:nth-child(1) > span > a", 'description': 'themen 1'}
 BREADCRUMBS_1 = {'css_selector': "a[class='trail-begin']", 'description': 'breadcrumbs home'}
 
-LESSON4 = {'css_selector': "div.post-71.is_not_sample > a", 'description': 'lesson4'}
-LESSON5 = {'css_selector': "div.post-14.is_not_sample > a", 'description': 'lesson5'}
-LESSON6 = {'css_selector': "div.post-84.is_not_sample > a", 'description': 'lesson6'}
-LESSON7 = {'css_selector': "div.post-91.is_not_sample > a", 'description': 'lesson7'}
+# LESSON4 = {'css_selector': "div.post-71.is_not_sample > a", 'description': 'lesson4'}
+# LESSON5 = {'css_selector': "div.post-14.is_not_sample > a", 'description': 'lesson5'}
+# LESSON6 = {'css_selector': "div.post-84.is_not_sample > a", 'description': 'lesson6'}
+# LESSON7 = {'css_selector': "div.post-91.is_not_sample > a", 'description': 'lesson7'}
 MARK_COMPLETE_BUTTON = {'css_selector': "#learndash_mark_complete_button", 'description': 'mark as complete button'}
 NEXT_LESSON = {'css_selector': "a[class='next-link']", 'description': 'next link'}
 PREVIOUS_LESSON = {'css_selector': "a[class='prev-link']", 'description': 'previous link'}
@@ -84,75 +84,84 @@ class AcademyMeine30Page:
     def complete_first_training(self):
         self.page.save_screenshot('C:/Users/mariuschesovan/Desktop/pat_screenshots/meine30_before_training1.png')
         self.click_training_1()
-        lessons = []
-        themes = self.page.get_web_elements('#learndash_topic_dots-456 > ul li', 'a')
-        for theme in themes:
-            lessons.append(theme.text)
-        print(lessons)
-        self.click_lesson1()
-        for x in range(len(lessons)):
-            self.click_mark_complete_button()
-            x += 1
-        self.click_breadcrumbs_first()
+        try:
+            lessons = []
+            themes = self.page.get_web_elements('#learndash_topic_dots-456 > ul li', 'a')
+            for theme in themes:
+                lessons.append(theme.text)
+            print(lessons)
+            self.click_lesson1()
+            for x in range(len(lessons)):
+                self.click_mark_complete_button()
+                x += 1
+            self.click_breadcrumbs_first()
+        except:
+            self.click_breadcrumbs_first()
+            pass
         self.page.save_screenshot('C:/Users/mariuschesovan/Desktop/pat_screenshots/meine30_after_training1.png')
 
     def complete_second_training(self):
         self.page.save_screenshot('C:/Users/mariuschesovan/Desktop/pat_screenshots/meine30_before_training2.png')
         self.click_training_2()
-        lessons = []
-        themes = self.page.get_web_elements('#learndash_topic_dots-464 > ul li', 'a')
-        for theme in themes:
-            lessons.append(theme.text)
-        print(lessons)
-        self.click_lesson1()
-        for x in range(len(lessons)):
-            self.click_mark_complete_button()
-            x += 1
-        self.click_breadcrumbs_first()
+        try:
+            lessons = []
+            themes = self.page.get_web_elements('#learndash_topic_dots-464 > ul li', 'a')
+            for theme in themes:
+                lessons.append(theme.text)
+            print(lessons)
+            self.click_lesson1()
+            for x in range(len(lessons)):
+                self.click_mark_complete_button()
+                x += 1
+            self.click_breadcrumbs_first()
+        except:
+            self.click_breadcrumbs_first()
+            pass
         self.page.save_screenshot('C:/Users/mariuschesovan/Desktop/pat_screenshots/meine30_after_training2.png')
 
     def complete_third_training(self):
         self.page.save_screenshot('C:/Users/mariuschesovan/Desktop/pat_screenshots/meine30_before_training3.png')
         self.click_training_3()
         try:
-            self.click_mark_complete_button()
+            lessons = []
+            themes = self.page.get_web_elements('#learndash_topic_dots-530 > ul li', 'a', 2)
+            for theme in themes:
+                lessons.append(theme.text)
+            print(lessons)
+            self.click_lesson1()
+            for x in range(len(lessons)):
+                self.click_mark_complete_button()
+                x += 1
+            self.click_breadcrumbs_first()
         except:
-            pass
-        lessons = []
-        themes = self.page.get_web_elements('#learndash_topic_dots-471 > ul li', 'a')
-        for theme in themes:
-            lessons.append(theme.text)
-        print(lessons)
-        self.click_lesson1()
-        for x in range(len(lessons)):
             self.click_mark_complete_button()
-            x += 1
-        self.click_breadcrumbs_first()
+            self.click_breadcrumbs_first()
+            pass
+
         self.page.save_screenshot('C:/Users/mariuschesovan/Desktop/pat_screenshots/meine30_after_training3.png')
 
     def complete_forth_training(self):
         self.page.save_screenshot('C:/Users/mariuschesovan/Desktop/pat_screenshots/meine30_before_training4.png')
         self.click_training_4()
         try:
-            self.click_mark_complete_button()
+            lessons = []
+            themes = self.page.get_web_elements('#learndash_topic_dots-471 > ul li', 'a')
+            for theme in themes:
+                lessons.append(theme.text)
+            print(lessons)
+            self.click_lesson1()
+            for x in range(len(lessons)):
+                self.click_mark_complete_button()
+                x += 1
+            # self.click_breadcrumbs_first()
         except:
+            self.click_breadcrumbs_first()
             pass
-        lessons = []
-        themes = self.page.get_web_elements('#learndash_topic_dots-530 > ul li', 'a')
-        for theme in themes:
-            lessons.append(theme.text)
-        print(lessons)
-        self.click_lesson1()
-        for x in range(len(lessons)):
-            self.click_mark_complete_button()
-            x += 1
-        self.click_breadcrumbs_first()
         self.page.save_screenshot('C:/Users/mariuschesovan/Desktop/pat_screenshots/meine30_after_training4.png')
 
     def complete_course(self):
         trainings = []
         lessons = self.page.get_web_elements('#lessons_list > div', '.notcompleted')
-        print(lessons)
         for lesson in lessons:
             trainings.append(lesson.text)
             print(lesson.text)
