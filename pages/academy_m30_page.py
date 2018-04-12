@@ -89,7 +89,7 @@ class AcademyMeine30Page:
             themes = self.page.get_web_elements('#learndash_topic_dots-456 > ul li', 'a')
             for theme in themes:
                 lessons.append(theme.text)
-            print(lessons)
+            # print(lessons)
             self.click_lesson1()
             for x in range(len(lessons)):
                 self.click_mark_complete_button()
@@ -108,7 +108,7 @@ class AcademyMeine30Page:
             themes = self.page.get_web_elements('#learndash_topic_dots-464 > ul li', 'a')
             for theme in themes:
                 lessons.append(theme.text)
-            print(lessons)
+            # print(lessons)
             self.click_lesson1()
             for x in range(len(lessons)):
                 self.click_mark_complete_button()
@@ -127,7 +127,7 @@ class AcademyMeine30Page:
             themes = self.page.get_web_elements('#learndash_topic_dots-530 > ul li', 'a', 2)
             for theme in themes:
                 lessons.append(theme.text)
-            print(lessons)
+            # print(lessons)
             self.click_lesson1()
             for x in range(len(lessons)):
                 self.click_mark_complete_button()
@@ -148,7 +148,7 @@ class AcademyMeine30Page:
             themes = self.page.get_web_elements('#learndash_topic_dots-471 > ul li', 'a')
             for theme in themes:
                 lessons.append(theme.text)
-            print(lessons)
+            # print(lessons)
             self.click_lesson1()
             for x in range(len(lessons)):
                 self.click_mark_complete_button()
@@ -164,7 +164,7 @@ class AcademyMeine30Page:
         lessons = self.page.get_web_elements('#lessons_list > div', '.notcompleted')
         for lesson in lessons:
             trainings.append(lesson.text)
-            print(lesson.text)
+            # print(lesson.text)
         for x in range(len(trainings)):
             if trainings[x] == 'Meine Basics':
                 try:
@@ -186,62 +186,5 @@ class AcademyMeine30Page:
                     self.complete_forth_training()
                 except:
                     print('........poate urmatorul curs......')
-
             x += 1
-        # print(trainings[0])
-        # print(trainings[1])
-        # print(trainings[2])
-        # print(trainings[3])
-
-
-
-    #
-    # def click_lesson2(self):
-    #     self.page.click_element(LESSON2['css_selector'], LESSON2['description'])
-    #
-    # def click_lesson3(self):
-    #     self.page.click_element(LESSON3['css_selector'], LESSON3['description'])
-    #
-    # def click_lesson4(self):
-    #     self.page.click_element(LESSON4['css_selector'], LESSON4['description'])
-    #
-    # def click_lesson5(self):
-    #     self.page.click_element(LESSON5['css_selector'], LESSON5['description'])
-    #
-    # def click_lesson6(self):
-    #     self.page.click_element(LESSON6['css_selector'], LESSON6['description'])
-    #
-    # def click_lesson7(self):
-    #     self.page.click_element(LESSON7['css_selector'], LESSON7['description'])
-    #
-    # def click_next_link(self):
-    #     try:
-    #         self.page.move_to_element('learndash_next_prev_link')
-    #         self.page.click_element(NEXT_LESSON['css_selector'], NEXT_LESSON['description'])
-    #     except ElementNotFound:
-    #         print('{} is not present on this page'.format(NEXT_LESSON['description']))
-    #         pass
-    #
-    # def click_mark_complete_button(self):
-    #     try:
-    #         self.page.move_to_element('learndash_next_prev_link')
-    #         self.page.click_element(MARK_COMPLETE_BUTTON['css_selector'], MARK_COMPLETE_BUTTON['description'],3)
-    #     except ElementNotFound:
-    #         self.click_next_link()
-    #         pass
-    #
-    # def click_quiz_on_lesson3(self):
-    #     self.page.move_to_element('post-69')
-    #     self.page.click_element(LESSON3_QUIZ['css_selector'], LESSON3_QUIZ['description'])
-    #
-    #
-    # def click_start_quiz_button(self):
-    #     self.page.click_element(START_QUIZ_BUTTON['css_selector'], START_QUIZ_BUTTON['description'])
-    #
-    # def complete_lesson_quiz(self, question_nr):
-    #     print('ajunge pana la lesson_quiz')
-    #     items = self.page.get_web_elements('.wpProQuiz_quiz > ol', 'list')
-    #     if question_nr == 1:
-    #         print("nic")
-
-    # def complete_first_training(self):
+        print("Meine 30 training finished")
