@@ -120,8 +120,9 @@ class ScRegistationPage:
 
         self.select_date_of_birth()
 
-        email = firstname + '.' + lastname + '@pwp-academy.com'
-        self.enter_sc_email(email.lower())
+        email_gen = firstname + '.' + lastname + '@pwp-academy.com'
+        email = email_gen.lower()
+        self.enter_sc_email(email)
 
         password = '123qwe'
         self.enter_and_confirm_password(password)

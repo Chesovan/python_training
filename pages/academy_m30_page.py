@@ -4,8 +4,8 @@ from tools.webdriver_commands import ElementNotFound
 # START_TRAINING_BUTTON = {'css_selector': "#btn-join", 'description': 'start training button'}
 TRAINING_1 = {'css_selector': "div.post-456 > a", 'description': 'Meine Basics'}
 TRAINING_2 = {'css_selector': "div.post-464 > a", 'description': 'Style Party Training'}
-TRAINING_3 = {'css_selector': "div.post-471 > a", 'description': 'IT-Management'}
-TRAINING_4 = {'css_selector': "div.post-530 > a", 'description': 'Teamaufbau Training'}
+TRAINING_4 = {'css_selector': "div.post-471 > a", 'description': 'IT-Management'}
+TRAINING_3 = {'css_selector': "div.post-530 > a", 'description': 'Teamaufbau Training'}
 THEMEN_1 = {'css_selector': "ul > li:nth-child(1) > span > a", 'description': 'themen 1'}
 BREADCRUMBS_1 = {'css_selector': "a[class='trail-begin']", 'description': 'breadcrumbs home'}
 
@@ -42,13 +42,13 @@ class AcademyMeine30Page:
         self.page.move_to_element('lessons_list')
         self.page.click_element(TRAINING_2['css_selector'], TRAINING_2['description'])
 
-    def click_training_3(self):
-        self.page.move_to_element('lessons_list')
-        self.page.click_element(TRAINING_3['css_selector'], TRAINING_3['description'])
-
     def click_training_4(self):
         self.page.move_to_element('lessons_list')
         self.page.click_element(TRAINING_4['css_selector'], TRAINING_4['description'])
+
+    def click_training_3(self):
+        self.page.move_to_element('lessons_list')
+        self.page.click_element(TRAINING_3['css_selector'], TRAINING_3['description'])
 
     def click_lesson1(self):
         self.page.move_to_element('learndash_lesson_topics_list')
@@ -113,9 +113,13 @@ class AcademyMeine30Page:
 
     def complete_third_training(self):
         self.page.save_screenshot('C:/Users/mariuschesovan/Desktop/pat_screenshots/meine30_before_training3.png')
-        self.click_training_4()
+        self.click_training_3()
+        try:
+            self.click_mark_complete_button()
+        except:
+            pass
         lessons = []
-        themes = self.page.get_web_elements('#learndash_topic_dots-530 > ul li', 'a')
+        themes = self.page.get_web_elements('#learndash_topic_dots-471 > ul li', 'a')
         for theme in themes:
             lessons.append(theme.text)
         print(lessons)
@@ -128,9 +132,13 @@ class AcademyMeine30Page:
 
     def complete_forth_training(self):
         self.page.save_screenshot('C:/Users/mariuschesovan/Desktop/pat_screenshots/meine30_before_training4.png')
-        self.click_training_3()
+        self.click_training_4()
+        try:
+            self.click_mark_complete_button()
+        except:
+            pass
         lessons = []
-        themes = self.page.get_web_elements('#learndash_topic_dots-471 > ul li', 'a')
+        themes = self.page.get_web_elements('#learndash_topic_dots-530 > ul li', 'a')
         for theme in themes:
             lessons.append(theme.text)
         print(lessons)
