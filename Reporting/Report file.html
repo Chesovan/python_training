@@ -11,9 +11,9 @@
         <div class="row">
             <div class="col-xs-12">
                 <h2 class="text-capitalize">Test Result</h2>
-                <p class='attribute'><strong>Start Time: </strong>2018-04-12 13:09:48</p>
-                <p class='attribute'><strong>Duration: </strong>250.425s</p>
-                <p class='attribute'><strong>Status: </strong>Pass: 1, Skip: 2</p>
+                <p class='attribute'><strong>Start Time: </strong>2018-04-12 14:18:10</p>
+                <p class='attribute'><strong>Duration: </strong>44.092s</p>
+                <p class='attribute'><strong>Status: </strong>Error: 1, Skip: 2</p>
             </div>
         </div>
         <div class="row">
@@ -27,17 +27,26 @@
                     </thead>
                     <tbody>
                         
-                            <tr class='success'>
+                            <tr class='warning'>
                                 <td class="col-xs-9">test_example1 (tests.test_example.TestExample)</td>
                                 <td class="col-xs-3">
-                                    <span class="label label-success">
+                                    <span class="label label-warning">
                                         
-                                            Pass
+                                            Error
                                         
                                     </span>
                                     
+                                        &nbsp<button class="btn btn-default btn-xs">View</button>
+                                    
                                 </td>
                             </tr>
+                            
+                                <tr style="display:none;">
+                                    <td class="col-xs-9">
+                                        <p>NameError</p>
+                                        <p>name 'driver' is not defined</p>
+                                    </td>
+                                </tr>
                             
                         
                             <tr class='info'>
@@ -57,7 +66,7 @@
                                 <tr style="display:none;">
                                     <td class="col-xs-9">
                                         <p></p>
-                                        <p>Reason</p>
+                                        <p>pus in comment pana termion restul</p>
                                     </td>
                                 </tr>
                             
@@ -89,7 +98,7 @@
                                Total Test Runned: 3
                             </td>
                             <td>
-                                <span>Pass: 1, Skip: 2</span>
+                                <span>Error: 1, Skip: 2</span>
                             </td>
                         </tr>
                     </tbody>
