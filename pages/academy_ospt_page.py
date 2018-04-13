@@ -9,16 +9,23 @@ LESSON4 = {'css_selector': "div.post-71.is_not_sample > a", 'description': 'less
 LESSON5 = {'css_selector': "div.post-14.is_not_sample > a", 'description': 'lesson5'}
 LESSON6 = {'css_selector': "div.post-84.is_not_sample > a", 'description': 'lesson6'}
 LESSON7 = {'css_selector': "div.post-91.is_not_sample > a", 'description': 'lesson7'}
+BREADCRUMBS_1 = {'css_selector': "a[class='trail-begin']", 'description': 'breadcrumbs home'}
 MARK_COMPLETE_BUTTON = {'css_selector': "#learndash_mark_complete_button", 'description': 'mark as complete button'}
 NEXT_LESSON = {'css_selector': "a[class='next-link']", 'description': 'next lesson'}
 LESSON3_QUIZ = {'css_selector': "#post-69", 'description': 'lesson3 quiz'}
+LESSON4_QUIZ = {'css_selector': "#post-11", 'description': 'lesson4 quiz'}
+LESSON5_QUIZ = {'css_selector': "#post-77", 'description': 'lesson5 quiz'}
+LESSON6_QUIZ = {'css_selector': "#post-89", 'description': 'lesson6 quiz'}
 START_QUIZ_BUTTON = {'css_selector': "input[name='startQuiz']", 'description': 'start quiz button'}
-ANSWER_OPTIONS_LIST = {'css_selector': "ul[data-question_id='26']", 'description': 'answer options list'}
-NEXT_QUESTION_BUTTON_1 = {'css_selector': "li:nth-child(1) > input:nth-child(7)", 'description': 'weiter 1 button'}
-ANSWERS = {'css_selector': "li[data-pos]", 'description': 'answer options 1'}
-# ANSWER2 = {'css_selector': "li[data-pos='0']", 'description': 'answer options 2'}
-# ANSWER3 = {'css_selector': "li[data-pos='0']", 'description': 'answer options 3'}
-# ANSWER4 = {'css_selector': "li[data-pos='0']", 'description': 'answer options 4'}
+ANSWER_OPTIONS_LIST = {'css_selector': "ul[data-question_id='26']", 'description': 'answer options list'}    # todo de revizuit
+TEST_FINISHED_BUTTON = {'css_selector': "li:nth-child(6) > input[name='next']", 'description': 'weiter 1 button'}
+TEST_FINISHED_BUTTON_NEXT = {'css_selector': "#quiz_continue_link", 'description': 'next test button'}
+PARENT_CSS = ''
+ANSWER1 = {'css_selector': "{} li[data-pos='0'] label".format(PARENT_CSS), 'description': 'answer options 1'}
+ANSWER2 = {'css_selector': "{} li[data-pos='1'] label".format(PARENT_CSS), 'description': 'answer options 2'}
+ANSWER3 = {'css_selector': "{} li[data-pos='2'] label".format(PARENT_CSS), 'description': 'answer options 3'}
+ANSWER4 = {'css_selector': "{} li[data-pos='3'] label".format(PARENT_CSS), 'description': 'answer options 4'}
+NEXT_QUESTION_BUTTON_1 = {'css_selector': "{} input[value='Weiter']".format(PARENT_CSS), 'description': 'weiter button'}
 
 
 class AcademyOsptPage:
@@ -32,27 +39,86 @@ class AcademyOsptPage:
         except ElementNotFound:
             pass
 
-    def click_lesson1(self):
-        self.page.move_to_element('lessons_list')
-        self.page.click_element(LESSON1['css_selector'], LESSON1['description'])
+    def click_lesson(self, lesson):
+        if lesson == 1:
+            self.page.move_to_element('lessons_list')
+            self.page.click_element(LESSON1['css_selector'], LESSON1['description'])
+        elif lesson == 2:
+            self.page.move_to_element('lessons_list')
+            self.page.click_element(LESSON2['css_selector'], LESSON2['description'])
+        elif lesson == 3:
+            self.page.move_to_element('lessons_list')
+            self.page.click_element(LESSON3['css_selector'], LESSON3['description'])
+        elif lesson == 4:
+            self.page.move_to_element('lessons_list')
+            self.page.click_element(LESSON4['css_selector'], LESSON4['description'])
+        elif lesson == 5:
+            self.page.move_to_element('lessons_list')
+            self.page.click_element(LESSON5['css_selector'], LESSON5['description'])
+        elif lesson == 6:
+            self.page.move_to_element('lessons_list')
+            self.page.click_element(LESSON6['css_selector'], LESSON6['description'])
+        elif lesson == 7:
+            self.page.move_to_element('lessons_list')
+            self.page.click_element(LESSON7['css_selector'], LESSON7['description'])
+        else:
+            print('Lesson {} is not available !!!'.format(lesson))
 
-    def click_lesson2(self):
-        self.page.click_element(LESSON2['css_selector'], LESSON2['description'])
+    def set_parent_css(self, css):
+        PARENT_CSS = css
+        return PARENT_CSS
 
-    def click_lesson3(self):
-        self.page.click_element(LESSON3['css_selector'], LESSON3['description'])
+    def choose_answer(self, answer_combination, question):
+        if answer_combination == 1:
+            self.page.click_element((self.set_parent_css('ol.wpProQuiz_list li:nth-of-type({})'.format(question)) + ANSWER1['css_selector']), ANSWER1['description'])
+        elif answer_combination == 2:
+            self.page.click_element((self.set_parent_css('ol.wpProQuiz_list li:nth-of-type({})'.format(question)) + ANSWER2['css_selector']), ANSWER2['description'])
+        elif answer_combination == 3:
+            self.page.click_element((self.set_parent_css('ol.wpProQuiz_list li:nth-of-type({})'.format(question)) + ANSWER3['css_selector']), ANSWER3['description'])
+        elif answer_combination == 4:
+            self.page.click_element((self.set_parent_css('ol.wpProQuiz_list li:nth-of-type({})'.format(question)) + ANSWER4['css_selector']), ANSWER4['description'])
+        elif answer_combination == 12:
+            self.page.click_element((self.set_parent_css('ol.wpProQuiz_list li:nth-of-type({})'.format(question)) + ANSWER2['css_selector']), ANSWER2['description'])
+            self.page.click_element((self.set_parent_css('ol.wpProQuiz_list li:nth-of-type({})'.format(question)) + ANSWER1['css_selector']), ANSWER1['description'])
 
-    def click_lesson4(self):
-        self.page.click_element(LESSON4['css_selector'], LESSON4['description'])
-
-    def click_lesson5(self):
-        self.page.click_element(LESSON5['css_selector'], LESSON5['description'])
-
-    def click_lesson6(self):
-        self.page.click_element(LESSON6['css_selector'], LESSON6['description'])
-
-    def click_lesson7(self):
-        self.page.click_element(LESSON7['css_selector'], LESSON7['description'])
+        elif answer_combination == 123:
+            self.page.click_element((self.set_parent_css('ol.wpProQuiz_list li:nth-of-type({})'.format(question)) + ANSWER1['css_selector']), ANSWER1['description'])
+            self.page.click_element((self.set_parent_css('ol.wpProQuiz_list li:nth-of-type({})'.format(question)) + ANSWER2['css_selector']), ANSWER2['description'])
+            self.page.click_element((self.set_parent_css('ol.wpProQuiz_list li:nth-of-type({})'.format(question)) + ANSWER3['css_selector']), ANSWER3['description'])
+        elif answer_combination == 124:
+            self.page.click_element((self.set_parent_css('ol.wpProQuiz_list li:nth-of-type({})'.format(question)) + ANSWER1['css_selector']), ANSWER1['description'])
+            self.page.click_element((self.set_parent_css('ol.wpProQuiz_list li:nth-of-type({})'.format(question)) + ANSWER2['css_selector']), ANSWER2['description'])
+            self.page.click_element((self.set_parent_css('ol.wpProQuiz_list li:nth-of-type({})'.format(question)) + ANSWER4['css_selector']), ANSWER4['description'])
+        elif answer_combination == 1234:
+            self.page.click_element((self.set_parent_css('ol.wpProQuiz_list li:nth-of-type({})'.format(question)) + ANSWER1['css_selector']), ANSWER1['description'])
+            self.page.click_element((self.set_parent_css('ol.wpProQuiz_list li:nth-of-type({})'.format(question)) + ANSWER2['css_selector']), ANSWER2['description'])
+            self.page.click_element((self.set_parent_css('ol.wpProQuiz_list li:nth-of-type({})'.format(question)) + ANSWER3['css_selector']), ANSWER3['description'])
+            self.page.click_element((self.set_parent_css('ol.wpProQuiz_list li:nth-of-type({})'.format(question)) + ANSWER4['css_selector']), ANSWER4['description'])
+        elif answer_combination == 13:
+            self.page.click_element((self.set_parent_css('ol.wpProQuiz_list li:nth-of-type({})'.format(question)) + ANSWER1['css_selector']), ANSWER1['description'])
+            self.page.click_element((self.set_parent_css('ol.wpProQuiz_list li:nth-of-type({})'.format(question)) + ANSWER3['css_selector']), ANSWER3['description'])
+        elif answer_combination == 134:
+            self.page.click_element((self.set_parent_css('ol.wpProQuiz_list li:nth-of-type({})'.format(question)) + ANSWER1['css_selector']), ANSWER1['description'])
+            self.page.click_element((self.set_parent_css('ol.wpProQuiz_list li:nth-of-type({})'.format(question)) + ANSWER3['css_selector']), ANSWER3['description'])
+            self.page.click_element((self.set_parent_css('ol.wpProQuiz_list li:nth-of-type({})'.format(question)) + ANSWER4['css_selector']), ANSWER4['description'])
+        elif answer_combination == 14:
+            self.page.click_element((self.set_parent_css('ol.wpProQuiz_list li:nth-of-type({})'.format(question)) + ANSWER1['css_selector']), ANSWER1['description'])
+            self.page.click_element((self.set_parent_css('ol.wpProQuiz_list li:nth-of-type({})'.format(question)) + ANSWER4['css_selector']), ANSWER4['description'])
+        elif answer_combination == 23:
+            self.page.click_element((self.set_parent_css('ol.wpProQuiz_list li:nth-of-type({})'.format(question)) + ANSWER2['css_selector'], ANSWER2['description']))
+            self.page.click_element((self.set_parent_css('ol.wpProQuiz_list li:nth-of-type({})'.format(question)) + ANSWER3['css_selector'], ANSWER3['description']))
+        elif answer_combination == 24:
+            self.page.click_element((self.set_parent_css('ol.wpProQuiz_list li:nth-of-type({})'.format(question)) + ANSWER2['css_selector'], ANSWER2['description']))
+            self.page.click_element((self.set_parent_css('ol.wpProQuiz_list li:nth-of-type({})'.format(question)) + ANSWER4['css_selector'], ANSWER4['description']))
+        elif answer_combination == 234:
+            self.page.click_element((self.set_parent_css('ol.wpProQuiz_list li:nth-of-type({})'.format(question)) + ANSWER2['css_selector'], ANSWER2['description']))
+            self.page.click_element((self.set_parent_css('ol.wpProQuiz_list li:nth-of-type({})'.format(question)) + ANSWER3['css_selector'], ANSWER3['description']))
+            self.page.click_element((self.set_parent_css('ol.wpProQuiz_list li:nth-of-type({})'.format(question)) + ANSWER4['css_selector'], ANSWER4['description']))
+        elif answer_combination == 34:
+            self.page.click_element((self.set_parent_css('ol.wpProQuiz_list li:nth-of-type({})'.format(question)) + ANSWER3['css_selector'], ANSWER3['description']))
+            self.page.click_element((self.set_parent_css('ol.wpProQuiz_list li:nth-of-type({})'.format(question)) + ANSWER4['css_selector'], ANSWER4['description']))
+        else:
+            print('Answer for {} is not available !!!'.format(answer_combination))
 
     def click_next_lesson_button(self):
         try:
@@ -62,6 +128,14 @@ class AcademyOsptPage:
             print('{} is not present on this page'.format(NEXT_LESSON['description']))
             pass
 
+    # def click_next_training_button(self):   todo luni
+    #     try:
+    #         self.page.move_to_element('learndash_next_prev_link')
+    #         self.page.click_element(NEXT_LESSON['css_selector'], NEXT_LESSON['description'])
+    #     except ElementNotFound:
+    #         print('{} is not present on this page'.format(NEXT_LESSON['description']))
+    #         pass
+
     def click_mark_complete_button(self):
         try:
             self.page.move_to_element('learndash_next_prev_link')
@@ -70,123 +144,165 @@ class AcademyOsptPage:
             self.click_next_lesson_button()
             pass
 
+    def click_breadcrumbs_first(self):
+        self.page.click_element(BREADCRUMBS_1['css_selector'], BREADCRUMBS_1['description'],1)
+
     def click_quiz_on_lesson3(self):
         self.page.move_to_element('post-69')
         self.page.click_element(LESSON3_QUIZ['css_selector'], LESSON3_QUIZ['description'])
 
+    def click_quiz_on_lesson4(self):
+        self.page.move_to_element('post-11')
+        self.page.click_element(LESSON4_QUIZ['css_selector'], LESSON4_QUIZ['description'])
+
+    def click_quiz_on_lesson5(self):
+        self.page.move_to_element('post-77')
+        self.page.click_element(LESSON5_QUIZ['css_selector'], LESSON5_QUIZ['description'])
+
+    def click_quiz_on_lesson6(self):
+        self.page.move_to_element('post-89')
+        self.page.click_element(LESSON6_QUIZ['css_selector'], LESSON6_QUIZ['description'])
 
     def click_start_quiz_button(self):
         self.page.click_element(START_QUIZ_BUTTON['css_selector'], START_QUIZ_BUTTON['description'])
 
-    def complete_lesson_quiz(self, question_nr):
-        print('ajunge pana la lesson_quiz')
-        items = self.page.get_web_elements('.wpProQuiz_quiz > ol', 'list')
-        if question_nr == 1:
-            print("nic")
+    def simple_training_completion(self):
+        try:
+            self.click_mark_complete_button()
+            self.click_breadcrumbs_first()
+        except:
+            self.click_breadcrumbs_first()
+            pass
 
-    answers_list = []
-    def lesson_quiz(self, lesson):
-        # questions_list = []
-        answer_option_list = []
+    def complex_training_completion(self, lesson):
+        if lesson == 3:
+            self.click_quiz_on_lesson3()
+            self.click_start_quiz_button()
+            x = 1
+            self.choose_answer(12, x)
+            self.page.click_element(self.set_parent_css('.wpProQuiz_quiz > ol > li:nth-child({})'.format(x)) + NEXT_QUESTION_BUTTON_1['css_selector'], NEXT_QUESTION_BUTTON_1['description'])
+            x += 1
+            self.choose_answer(2, x)
+            self.page.click_element(self.set_parent_css('.wpProQuiz_quiz > ol > li:nth-child({})'.format(x)) + NEXT_QUESTION_BUTTON_1['css_selector'], NEXT_QUESTION_BUTTON_1['description'])
+            x += 1
+            self.choose_answer(12, x)
+            self.page.click_element(self.set_parent_css('.wpProQuiz_quiz > ol > li:nth-child({})'.format(x)) + NEXT_QUESTION_BUTTON_1['css_selector'], NEXT_QUESTION_BUTTON_1['description'])
+            x += 1
+            self.choose_answer(3, x)
+            self.page.click_element(self.set_parent_css('.wpProQuiz_quiz > ol > li:nth-child({})'.format(x)) + NEXT_QUESTION_BUTTON_1['css_selector'], NEXT_QUESTION_BUTTON_1['description'])
+            x += 1
+            self.choose_answer(123, x)
+            self.page.click_element(self.set_parent_css('.wpProQuiz_quiz > ol > li:nth-child({})'.format(x)) + NEXT_QUESTION_BUTTON_1['css_selector'], NEXT_QUESTION_BUTTON_1['description'])
+            x += 1
+            self.choose_answer(3, x)
+            self.page.click_element(TEST_FINISHED_BUTTON['css_selector'], TEST_FINISHED_BUTTON['description'])
+            self.page.wait_a_second(15)
+            self.page.save_screenshot('C:/Users/mariuschesovan/Desktop/pat_screenshots/ospm_training3_after_quiz.png')
+            self.click_next_lesson_button()
+        elif lesson == 4:
+            self.click_quiz_on_lesson4()
+            self.click_start_quiz_button()
+            x = 1
+            self.choose_answer(1, x)
+            self.page.click_element(self.set_parent_css('.wpProQuiz_quiz > ol > li:nth-child({})'.format(x)) + NEXT_QUESTION_BUTTON_1['css_selector'], NEXT_QUESTION_BUTTON_1['description'])
+            x+= 1
+            self.choose_answer(1, x)
+            self.page.click_element(self.set_parent_css('.wpProQuiz_quiz > ol > li:nth-child({})'.format(x)) + NEXT_QUESTION_BUTTON_1['css_selector'], NEXT_QUESTION_BUTTON_1['description'])
+            x+= 1
+            self.choose_answer(3, x)
+            self.page.click_element(self.set_parent_css('.wpProQuiz_quiz > ol > li:nth-child({})'.format(x)) + NEXT_QUESTION_BUTTON_1['css_selector'], NEXT_QUESTION_BUTTON_1['description'])
+            x+= 1
+            self.choose_answer(1, x)
+            self.page.click_element(self.set_parent_css('.wpProQuiz_quiz > ol > li:nth-child({})'.format(x)) + NEXT_QUESTION_BUTTON_1['css_selector'], NEXT_QUESTION_BUTTON_1['description'])
+            x+= 1
+            self.choose_answer(1, x)
+            self.page.click_element(self.set_parent_css('.wpProQuiz_quiz > ol > li:nth-child({})'.format(x)) + NEXT_QUESTION_BUTTON_1['css_selector'], NEXT_QUESTION_BUTTON_1['description'])
+            x+= 1
+            self.choose_answer(1234, x)
+            self.page.click_element(TEST_FINISHED_BUTTON['css_selector'], TEST_FINISHED_BUTTON['description'])
+            self.page.wait_a_second(15)
+            self.page.save_screenshot('C:/Users/mariuschesovan/Desktop/pat_screenshots/ospm_training4_after_quiz.png')
+            self.click_next_lesson_button()
+        elif lesson == 5:
+            self.click_quiz_on_lesson5()
+            self.click_start_quiz_button()
+            x = 1
+            self.choose_answer(12, x)
+            self.page.click_element(self.set_parent_css('.wpProQuiz_quiz > ol > li:nth-child({})'.format(x)) + NEXT_QUESTION_BUTTON_1['css_selector'], NEXT_QUESTION_BUTTON_1['description'])
+            x += 1
+            self.choose_answer(1, x)
+            self.page.click_element(TEST_FINISHED_BUTTON['css_selector'], TEST_FINISHED_BUTTON['description'])
+            self.page.wait_a_second(15)
+            self.page.save_screenshot('C:/Users/mariuschesovan/Desktop/pat_screenshots/ospm_training5_after_quiz.png')
+            self.click_next_lesson_button()
+        elif lesson == 6:
+            self.click_quiz_on_lesson6()
+            self.click_start_quiz_button()
+            x=1
+            self.choose_answer(1, x)
+            self.page.click_element(self.set_parent_css('.wpProQuiz_quiz > ol > li:nth-child({})'.format(x)) + NEXT_QUESTION_BUTTON_1['css_selector'], NEXT_QUESTION_BUTTON_1['description'])
+            x +=1
+            self.choose_answer(2, x)
+            self.page.click_element(self.set_parent_css('.wpProQuiz_quiz > ol > li:nth-child({})'.format(x)) + NEXT_QUESTION_BUTTON_1['css_selector'], NEXT_QUESTION_BUTTON_1['description'])
+            x +=1
+            self.choose_answer(12, x)
+            self.page.click_element(self.set_parent_css('.wpProQuiz_quiz > ol > li:nth-child({})'.format(x)) + NEXT_QUESTION_BUTTON_1['css_selector'], NEXT_QUESTION_BUTTON_1['description'])
+            x +=1
+            self.choose_answer(12, x)
+            self.page.click_element(TEST_FINISHED_BUTTON['css_selector'], TEST_FINISHED_BUTTON['description'])
+            self.page.wait_a_second(15)
+            self.page.save_screenshot('C:/Users/mariuschesovan/Desktop/pat_screenshots/ospm_training6_after_quiz.png')
+            self.click_next_lesson_button()
+        else:
+            print('The training completion for lesson {} is not complex !!!'.format(lesson))
+        self.click_breadcrumbs_first()
 
-        questions = self.page.get_web_elements('.wpProQuiz_quiz > ol', 'list')
-        for question in questions:
-            question_nr = int(question.find_element_by_css_selector('.wpProQuiz_question_page > span:nth-child(1)').text)
-            # quizzes = self.page.get_web_elements('.wpProQuiz_question > ul > li', 'li')
+    def complete_training(self, training):
+        self.click_lesson(training)
+        if training == 1:
+            self.page.save_screenshot('C:/Users/mariuschesovan/Desktop/pat_screenshots/ospm_training1_before.png')
+            self.simple_training_completion()
+            self.page.save_screenshot('C:/Users/mariuschesovan/Desktop/pat_screenshots/ospm_training1_after.png')
+        elif training == 2:
+            self.page.save_screenshot('C:/Users/mariuschesovan/Desktop/pat_screenshots/ospm_training2_before.png')
+            self.simple_training_completion()
+            self.page.save_screenshot('C:/Users/mariuschesovan/Desktop/pat_screenshots/ospm_training2_after.png')
+        elif training == 3:
+            self.page.save_screenshot('C:/Users/mariuschesovan/Desktop/pat_screenshots/ospm_training3_before.png')
+            self.complex_training_completion(training)
+            self.page.save_screenshot('C:/Users/mariuschesovan/Desktop/pat_screenshots/ospm_training3_after.png')
+        elif training == 4:
+            self.page.save_screenshot('C:/Users/mariuschesovan/Desktop/pat_screenshots/ospm_training4_before.png')
+            self.complex_training_completion(training)
+            self.page.save_screenshot('C:/Users/mariuschesovan/Desktop/pat_screenshots/ospm_training4_after.png')
+        elif training == 5:
+            self.page.save_screenshot('C:/Users/mariuschesovan/Desktop/pat_screenshots/ospm_training5_before.png')
+            self.complex_training_completion(training)
+            self.page.save_screenshot('C:/Users/mariuschesovan/Desktop/pat_screenshots/ospm_training5_after.png')
+        elif training == 6:
+            self.page.save_screenshot('C:/Users/mariuschesovan/Desktop/pat_screenshots/ospm_training6_before.png')
+            self.complex_training_completion(training)
+            self.page.save_screenshot('C:/Users/mariuschesovan/Desktop/pat_screenshots/ospm_training6_after.png')
+        elif training == 7:
+            self.page.save_screenshot('C:/Users/mariuschesovan/Desktop/pat_screenshots/ospm_training7_before.png')
+            self.simple_training_completion()
+            self.page.save_screenshot('C:/Users/mariuschesovan/Desktop/pat_screenshots/ospm_training7_after.png')
+        else:
+            print('There is no training with this nr. {} !!!'.format(training))
 
-            contain = driver.find_element_by_css_selector('.wpProQuiz_question > ul')
-            quizzes = contain.find_elements_by_tag_name('li > label > input')
-            # self.answers_list.extend(quizzes)
-            for quiz in quizzes:
-                answer_option_list.append(quiz)
-
-            print(answer_option_list)
-            if lesson == 3:
-                self.page.wait_a_second(9)
-                if question_nr == 1:
-                    print('pana aici a mers ... oare da click ?')
-                    answer_option_list[0].click()
-                    print('pana aici a mers ... oare da click ? 2')
-                    answer_option_list[1].click()
-                    self.page.click_element(NEXT_QUESTION_BUTTON_1['css_selector'], NEXT_QUESTION_BUTTON_1['description'])
-
-        # for question in questions:
-        #     question_nr = int(question.find_element_by_css_selector('.wpProQuiz_question_page > span:nth-child(1)').text)
-        # print(self.answers_list)
-        # self.page.wait_a_second(10)
-        # # self.answers_list[0].click()
-        # self.page.wait_a_second(10)
-        # if lesson == 3:
-        #     self.page.wait_a_second(2)
-        #     if question_nr == 1:
-        #         questions_list[0].answer_option_list[0].click()
-        #         questions_list[0].answer_option_list[1].click()
-        #         self.page.click_element(NEXT_QUESTION_BUTTON_1['css_selector'], NEXT_QUESTION_BUTTON_1['description'])
-        #
-        #     elif question_nr == 2:
-        #         questions_list[0].answer_option_list[1].click()
-        #         self.page.click_element(NEXT_QUESTION_BUTTON_1['css_selector'], NEXT_QUESTION_BUTTON_1['description'])
-        #
-        #     elif question_nr == 3:
-        #         questions_list[0].answer_option_list[0].click()
-        #         questions_list[0].answer_option_list[1].click()
-        #         self.page.click_element(NEXT_QUESTION_BUTTON_1['css_selector'], NEXT_QUESTION_BUTTON_1['description'])
-        #     elif question_nr == 4:
-        #         answer_option_list[2].click()
-        #         self.page.click_element(NEXT_QUESTION_BUTTON_1['css_selector'],
-        #                                 NEXT_QUESTION_BUTTON_1['description'])
-        #     elif question_nr == 5:
-        #         answer_option_list[0].click()
-        #         answer_option_list[1].click()
-        #         answer_option_list[2].click()
-        #         self.page.click_element(NEXT_QUESTION_BUTTON_1['css_selector'],
-        #                                 NEXT_QUESTION_BUTTON_1['description'])
-        #     elif question_nr == 6:
-        #         answer_option_list[3].click()
-        #         self.page.click_element(NEXT_QUESTION_BUTTON_1['css_selector'],
-        #                                 NEXT_QUESTION_BUTTON_1['description'])
-
-        #     questions_list.append(answer_option_list)
-        # print('---------------------------')
-        # print(answer_option_list)
-        # print(questions_list)
-        # print('---------------------------')
-
-
-
-
-
-            #
-            #
-            #
-            # if lesson == 3 and question_nr==1:
-            #     answer_option_list[0].click()
-            #     answer_option_list[1].click()
-            #     self.page.click_element(NEXT_QUESTION_BUTTON_1['css_selector'],NEXT_QUESTION_BUTTON_1['description'])
-            #
-            #
-            # if lesson == 3:
-            #     for
-            #     self.lesson_quiz(question_nr)
-            # elif lesson == 4:
-            #     print('tre facuta functie, cred')
-
-
-        #     text = item.text
-        #     if x in text:
-        #         self.results_list_product_price = item.find_element_by_css_selector('span.price').text
-        #         item.click()
-        #         break
-        # print(self.results_list_product_price)
-
-
-    # results_list_product_price = 0
-    # def get_search_result(self, x):
-    #     items = self.page.get_web_elements('.container-fluid > div > ul','list')
-    #     for item in items:
-    #         text = item.text
-    #         if x in text:
-    #             self.results_list_product_price = item.find_element_by_css_selector('span.price').text
-    #             item.click()
-    #             break
-    #     print(self.results_list_product_price)
+    def complete_course(self):
+        self.click_mache_dieses_training_button()
+        self.page.save_screenshot('C:/Users/mariuschesovan/Desktop/pat_screenshots/ospm_trainings_before.png')
+        trainings = []
+        lessons = self.page.get_web_elements('#lessons_list > div', '.notcompleted')
+        for lesson in lessons:
+            trainings.append(lesson.text)
+            print(lesson.text)
+        for x in range(len(trainings)):
+            try:
+                self.complete_training(x+1)
+            except:
+                print('cazut la if {}'.format(x))
+            x += 1
+        self.page.save_screenshot('C:/Users/mariuschesovan/Desktop/pat_screenshots/ospm_trainings_after.png')
+        print("OSPM training finished")

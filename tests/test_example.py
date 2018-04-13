@@ -31,16 +31,10 @@ class TestExample(ParametrizedTestCase):
         page_example.enter_password(password)
         page_example.click_login_button()
 
-        # ospm training todo
+        # ospm training todo or done ??
         driver.get('https://staging-academy.pippajean.com/courses/online-style-party-training/')
         academy_ospt_page = AcademyOsptPage(driver)
-        academy_ospt_page.click_mache_dieses_training_button()
-        academy_ospt_page.click_lesson1()
-        academy_ospt_page.click_mark_complete_button()
-        academy_ospt_page.click_mark_complete_button()
-        academy_ospt_page.click_quiz_on_lesson3()
-        academy_ospt_page.click_start_quiz_button()
-        academy_ospt_page.lesson_quiz(3)
+        academy_ospt_page.complete_course()
 
 
 

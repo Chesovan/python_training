@@ -1,11 +1,9 @@
 from tools.webdriver_commands import WebdriverCommands
 from tools.webdriver_commands import ElementNotFound
 
-# START_TRAINING_BUTTON = {'css_selector': "#btn-join", 'description': 'start training button'}
 TRAINING_1 = {'css_selector': "div.post-532 > a", 'description': 'Fortgeschritten: Style Party Training'}
 TRAINING_2 = {'css_selector': "div.post-639 > a", 'description': 'Fortgeschritten: Teamaufbau Training'}
 TRAINING_3 = {'css_selector': "div.post-530 > a", 'description': 'Einführung: Teamaufbau Training'}
-# THEMEN_1 = {'css_selector': "ul > li:nth-child(1) > span > a", 'description': 'themen 1'}
 BREADCRUMBS_1 = {'css_selector': "a[class='trail-begin']", 'description': 'breadcrumbs home'}
 MARK_COMPLETE_BUTTON = {'css_selector': "#learndash_mark_complete_button", 'description': 'mark as complete button'}
 NEXT_LESSON = {'css_selector': "a[class='next-link']", 'description': 'next link'}
