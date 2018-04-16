@@ -8,7 +8,7 @@ from pages.sc_registration import ScRegistationPage
 from pages.academy_ospt_page import AcademyOsptPage
 from tools.parametrized_test_case import ParametrizedTestCase
 
-email = "carla.lyons@pwp-academy.com"
+email = "joan.westling@pwp-academy.com"
 password = "123qwe"
 text_search = "Fascination"
 text_search1 = "Earrings"
@@ -23,15 +23,36 @@ class TestExample(ParametrizedTestCase):
         driver.get('https://staging.pippajean.com/de/walter/')
         page_example = PageExample(driver)
         sc_registration = ScRegistationPage(driver)
-        # sc_registration.register_sc()
+        sc_registration.register_sc()
 
         #
-        page_example.click_sign_in_button()
-        page_example.enter_email(email)
-        page_example.enter_password(password)
-        page_example.click_login_button()
+        # page_example.click_sign_in_button()
+        # page_example.enter_email(email)
+        # page_example.enter_password(password)
+        # page_example.click_login_button()
 
-        # ospm training todo or done ??
+        # meine 30 did
+        # pus in comment pana termion restul
+        driver.get('https://staging-academy.pippajean.com/courses/meine-ersten-30-tage/')
+        academy_m30_page = AcademyMeine30Page(driver)
+        academy_m30_page.save_screen()
+        academy_m30_page.complete_course()
+
+        # # meine 60 did
+        # # pus in comment pana termion restul
+        driver.get('https://staging-academy.pippajean.com/courses/meine-ersten-60-tage/')
+        academy_m60_page = AcademyMeine60Page(driver)
+        academy_m60_page.save_screen()
+        academy_m60_page.complete_course()
+
+        # # # meine 90 did
+        # # # pus in comment pana termion restul
+        driver.get('https://staging-academy.pippajean.com/courses/meine-ersten-90-tage/')
+        academy_m90_page = AcademyMeine90Page(driver)
+        academy_m90_page.save_screen()
+        academy_m90_page.complete_course()
+
+        # ospm training todo finish it - dupa ultimul test (7) trebuie scos clickul pe bredcrumbs
         driver.get('https://staging-academy.pippajean.com/courses/online-style-party-training/')
         academy_ospt_page = AcademyOsptPage(driver)
         academy_ospt_page.complete_course()

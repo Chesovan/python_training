@@ -11,9 +11,9 @@
         <div class="row">
             <div class="col-xs-12">
                 <h2 class="text-capitalize">Test Result</h2>
-                <p class='attribute'><strong>Start Time: </strong>2018-04-13 15:50:27</p>
-                <p class='attribute'><strong>Duration: </strong>212.417s</p>
-                <p class='attribute'><strong>Status: </strong>Pass: 1, Skip: 2</p>
+                <p class='attribute'><strong>Start Time: </strong>2018-04-16 17:18:52</p>
+                <p class='attribute'><strong>Duration: </strong>390.669s</p>
+                <p class='attribute'><strong>Status: </strong>Error: 1, Skip: 2</p>
             </div>
         </div>
         <div class="row">
@@ -27,17 +27,26 @@
                     </thead>
                     <tbody>
                         
-                            <tr class='success'>
+                            <tr class='warning'>
                                 <td class="col-xs-9">test_example1 (tests.test_example.TestExample)</td>
                                 <td class="col-xs-3">
-                                    <span class="label label-success">
+                                    <span class="label label-warning">
                                         
-                                            Pass
+                                            Error
                                         
                                     </span>
                                     
+                                        &nbsp<button class="btn btn-default btn-xs">View</button>
+                                    
                                 </td>
                             </tr>
+                            
+                                <tr style="display:none;">
+                                    <td class="col-xs-9">
+                                        <p>ElementNotFound</p>
+                                        <p>Failed to locate: breadcrumbs home, using a[class='trail-begin'] span</p>
+                                    </td>
+                                </tr>
                             
                         
                             <tr class='info'>
@@ -89,7 +98,7 @@
                                Total Test Runned: 3
                             </td>
                             <td>
-                                <span>Pass: 1, Skip: 2</span>
+                                <span>Error: 1, Skip: 2</span>
                             </td>
                         </tr>
                     </tbody>

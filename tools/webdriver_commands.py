@@ -181,3 +181,9 @@ class WebdriverCommands(ParametrizedTestCase):
         :return:
         '''
         self.driver.save_screenshot(path)
+
+    def wait_for_element_to_disappear(self, selector, description, time= ELEMENT_WAIT):
+        try:
+            WebDriverWait(self.driver,time).until(EC.invisibility_of_element_located((By.CSS_SELECTOR, selector)))
+        except:
+            raise ElementNotFound(selector,description)

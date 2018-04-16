@@ -5,11 +5,11 @@ START_TRAINING_BUTTON = {'css_selector': "#btn-join", 'description': 'start trai
 LESSON1 = {'css_selector': "div.post-9.is_not_sample > a", 'description': 'lesson1'}
 LESSON2 = {'css_selector': "div.post-64.is_not_sample > a", 'description': 'lesson2'}
 LESSON3 = {'css_selector': "div.post-67.is_not_sample > a", 'description': 'lesson3'}
-LESSON4 = {'css_selector': "div.post-71.is_not_sample > a", 'description': 'lesson4'}
-LESSON5 = {'css_selector': "div.post-14.is_not_sample > a", 'description': 'lesson5'}
+LESSON5 = {'css_selector': "div.post-71.is_not_sample > a", 'description': 'lesson4'}
+LESSON4 = {'css_selector': "div.post-14.is_not_sample > a", 'description': 'lesson5'}
 LESSON6 = {'css_selector': "div.post-84.is_not_sample > a", 'description': 'lesson6'}
 LESSON7 = {'css_selector': "div.post-91.is_not_sample > a", 'description': 'lesson7'}
-BREADCRUMBS_1 = {'css_selector': "a[class='trail-begin']", 'description': 'breadcrumbs home'}
+BREADCRUMBS_1 = {'css_selector': "a[class='trail-begin'] span", 'description': 'breadcrumbs home'}
 MARK_COMPLETE_BUTTON = {'css_selector': "#learndash_mark_complete_button", 'description': 'mark as complete button'}
 NEXT_LESSON = {'css_selector': "a[class='next-link']", 'description': 'next lesson'}
 LESSON3_QUIZ = {'css_selector': "#post-69", 'description': 'lesson3 quiz'}
@@ -17,8 +17,8 @@ LESSON4_QUIZ = {'css_selector': "#post-11", 'description': 'lesson4 quiz'}
 LESSON5_QUIZ = {'css_selector': "#post-77", 'description': 'lesson5 quiz'}
 LESSON6_QUIZ = {'css_selector': "#post-89", 'description': 'lesson6 quiz'}
 START_QUIZ_BUTTON = {'css_selector': "input[name='startQuiz']", 'description': 'start quiz button'}
-ANSWER_OPTIONS_LIST = {'css_selector': "ul[data-question_id='26']", 'description': 'answer options list'}    # todo de revizuit
-TEST_FINISHED_BUTTON = {'css_selector': "li:nth-child(6) > input[name='next']", 'description': 'weiter 1 button'}
+ANSWER_OPTIONS_LIST = {'css_selector': "ul[data-question_id='26']", 'description': 'answer options list'}
+TEST_FINISHED_BUTTON = {'css_selector': "ol > li:last-of-type input[name='next']", 'description': 'weiter 1 button'}
 TEST_FINISHED_BUTTON_NEXT = {'css_selector': "#quiz_continue_link", 'description': 'next test button'}
 PARENT_CSS = ''
 ANSWER1 = {'css_selector': "{} li[data-pos='0'] label".format(PARENT_CSS), 'description': 'answer options 1'}
@@ -128,13 +128,12 @@ class AcademyOsptPage:
             print('{} is not present on this page'.format(NEXT_LESSON['description']))
             pass
 
-    # def click_next_training_button(self):   todo luni
-    #     try:
-    #         self.page.move_to_element('learndash_next_prev_link')
-    #         self.page.click_element(NEXT_LESSON['css_selector'], NEXT_LESSON['description'])
-    #     except ElementNotFound:
-    #         print('{} is not present on this page'.format(NEXT_LESSON['description']))
-    #         pass
+    def click_next_training_button(self):
+        try:
+            self.page.move_to_element('quiz_continue_link')
+            self.page.click_element(TEST_FINISHED_BUTTON_NEXT['css_selector'], TEST_FINISHED_BUTTON_NEXT['description'])
+        except ElementNotFound:
+            print('Needs more wait time before clicking on \'complete test button\'')
 
     def click_mark_complete_button(self):
         try:
@@ -196,9 +195,12 @@ class AcademyOsptPage:
             x += 1
             self.choose_answer(3, x)
             self.page.click_element(TEST_FINISHED_BUTTON['css_selector'], TEST_FINISHED_BUTTON['description'])
-            self.page.wait_a_second(15)
+            try:
+                self.page.wait_for_element_to_disappear('.course_progress', 'progress bar')
+            except:
+                pass
             self.page.save_screenshot('C:/Users/mariuschesovan/Desktop/pat_screenshots/ospm_training3_after_quiz.png')
-            self.click_next_lesson_button()
+            self.click_next_training_button()
         elif lesson == 4:
             self.click_quiz_on_lesson4()
             self.click_start_quiz_button()
@@ -220,9 +222,12 @@ class AcademyOsptPage:
             x+= 1
             self.choose_answer(1234, x)
             self.page.click_element(TEST_FINISHED_BUTTON['css_selector'], TEST_FINISHED_BUTTON['description'])
-            self.page.wait_a_second(15)
+            try:
+                self.page.wait_for_element_to_disappear('.course_progress', 'progress bar')
+            except:
+                pass
             self.page.save_screenshot('C:/Users/mariuschesovan/Desktop/pat_screenshots/ospm_training4_after_quiz.png')
-            self.click_next_lesson_button()
+            self.click_next_training_button()
         elif lesson == 5:
             self.click_quiz_on_lesson5()
             self.click_start_quiz_button()
@@ -232,9 +237,12 @@ class AcademyOsptPage:
             x += 1
             self.choose_answer(1, x)
             self.page.click_element(TEST_FINISHED_BUTTON['css_selector'], TEST_FINISHED_BUTTON['description'])
-            self.page.wait_a_second(15)
+            try:
+                self.page.wait_for_element_to_disappear('.course_progress', 'progress bar')
+            except:
+                pass
             self.page.save_screenshot('C:/Users/mariuschesovan/Desktop/pat_screenshots/ospm_training5_after_quiz.png')
-            self.click_next_lesson_button()
+            self.click_next_training_button()
         elif lesson == 6:
             self.click_quiz_on_lesson6()
             self.click_start_quiz_button()
@@ -250,9 +258,12 @@ class AcademyOsptPage:
             x +=1
             self.choose_answer(12, x)
             self.page.click_element(TEST_FINISHED_BUTTON['css_selector'], TEST_FINISHED_BUTTON['description'])
-            self.page.wait_a_second(15)
+            try:
+                self.page.wait_for_element_to_disappear('.course_progress', 'progress bar')
+            except:
+                pass
             self.page.save_screenshot('C:/Users/mariuschesovan/Desktop/pat_screenshots/ospm_training6_after_quiz.png')
-            self.click_next_lesson_button()
+            self.click_next_training_button()
         else:
             print('The training completion for lesson {} is not complex !!!'.format(lesson))
         self.click_breadcrumbs_first()
@@ -299,10 +310,10 @@ class AcademyOsptPage:
             trainings.append(lesson.text)
             print(lesson.text)
         for x in range(len(trainings)):
-            try:
-                self.complete_training(x+1)
-            except:
-                print('cazut la if {}'.format(x))
+            # try:
+            self.complete_training(x+1)
+            # except:
+                # print('cazut la if {}'.format(x))
             x += 1
         self.page.save_screenshot('C:/Users/mariuschesovan/Desktop/pat_screenshots/ospm_trainings_after.png')
         print("OSPM training finished")
