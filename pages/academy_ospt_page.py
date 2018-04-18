@@ -20,6 +20,7 @@ START_QUIZ_BUTTON = {'css_selector': "input[name='startQuiz']", 'description': '
 ANSWER_OPTIONS_LIST = {'css_selector': "ul[data-question_id='26']", 'description': 'answer options list'}
 TEST_FINISHED_BUTTON = {'css_selector': "ol > li:last-of-type input[name='next']", 'description': 'weiter 1 button'}
 TEST_FINISHED_BUTTON_NEXT = {'css_selector': "#quiz_continue_link", 'description': 'next test button'}
+PRINT_CERTIFICATE_BUTTON = {'css_selector': "#learndash_course_certificate", 'description': 'print certificate button'}
 PARENT_CSS = ''
 ANSWER1 = {'css_selector': "{} li[data-pos='0'] label".format(PARENT_CSS), 'description': 'answer options 1'}
 ANSWER2 = {'css_selector': "{} li[data-pos='1'] label".format(PARENT_CSS), 'description': 'answer options 2'}
@@ -166,11 +167,10 @@ class AcademyOsptPage:
         self.page.click_element(START_QUIZ_BUTTON['css_selector'], START_QUIZ_BUTTON['description'])
 
     def simple_training_completion(self):
+        self.click_mark_complete_button()
         try:
-            self.click_mark_complete_button()
             self.click_breadcrumbs_first()
         except:
-            self.click_breadcrumbs_first()
             pass
 
     def complex_training_completion(self, lesson):
@@ -308,12 +308,8 @@ class AcademyOsptPage:
         lessons = self.page.get_web_elements('#lessons_list > div', '.notcompleted')
         for lesson in lessons:
             trainings.append(lesson.text)
-            print(lesson.text)
         for x in range(len(trainings)):
-            # try:
             self.complete_training(x+1)
-            # except:
-                # print('cazut la if {}'.format(x))
             x += 1
         self.page.save_screenshot('C:/Users/mariuschesovan/Desktop/pat_screenshots/ospm_trainings_after.png')
         print("OSPM training finished")

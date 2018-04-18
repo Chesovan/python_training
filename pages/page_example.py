@@ -22,9 +22,6 @@ class PageExample:
     def __init__(self, driver):
         self.page = WebdriverCommands(driver)
 
-    # def click_search_button(self):
-    #     self.page.click_element(SEARCH_BUTTON['css_selector'], SEARCH_BUTTON['description'])
-
     def click_sign_in_button(self):
         self.page.click_element(SIGN_IN_BUTTON['css_selector'], SIGN_IN_BUTTON['description'])
         print('sign in was clicked')
@@ -49,20 +46,3 @@ class PageExample:
         page_title = self.page.return_title()
         self.page.assertTrue('Title' == page_title, 'Expected: {}, received: {}'.format('Title', page_title))
 
-    def enter_code(self, code_search):
-        self.page.send_keys(SEARCH_FIELD['css_selector'], SEARCH_FIELD['description'], code_search)
-
-    def click_search_button(self):
-        self.page.click_element(SEARCH_FIELD_BUTTON['css_selector'], SEARCH_FIELD_BUTTON['description'])
-
-    results_list_product_price = 0
-
-    def get_search_result(self, x):
-        items = self.page.get_web_elements('.container-fluid > div > ul','list')
-        for item in items:
-            text = item.text
-            if x in text:
-                self.results_list_product_price = item.find_element_by_css_selector('span.price').text
-                item.click()
-                break
-        print(self.results_list_product_price)
