@@ -9,10 +9,13 @@ from pages.sc_registration import ScRegistationPage
 from pages.academy_ospt_page import AcademyOsptPage
 from tools.parametrized_test_case import ParametrizedTestCase
 
-email = "joan.westling@pwp-academy.com"
+email = "marianne.eder@pwp-academy.com"
 password = "123qwe"
 text_search = "Fascination"
 text_search1 = "EARRINGS"
+holder = email.split('@')
+holder = holder[0].split('.')
+holder = holder[0].title() + ' ' + holder[1].title()
 
 class TestExample(ParametrizedTestCase):
 
@@ -116,9 +119,7 @@ class TestExample(ParametrizedTestCase):
         page_example.click_login_button()
 
         # tema scenariul 1 todo
-        home_page.input_search_field(text_search)
-        home_page.click_search_button()
-        home_page.get_search_result(text_search1)
+        home_page.scenario_1(text_search, text_search1, holder)
 
 
 

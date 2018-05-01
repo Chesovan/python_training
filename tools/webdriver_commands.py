@@ -148,6 +148,26 @@ class WebdriverCommands(ParametrizedTestCase):
         except:
             raise ElementNotFound("Failed to locate: {}, using: {}".format(locator_description, css_selector))
 
+    def find_element_by_class_name(self, name):
+        """
+        Finds an element by class name.
+
+        :Args:
+         - name: The class name of the element to find.
+
+        :Returns:
+         - WebElement - the element if it was found
+
+        :Raises:
+         - NoSuchElementException - if the element wasn't found
+
+        :Usage:
+            element = driver.find_element_by_class_name('foo')
+        """
+        try:
+            return self.driver.find_element_by_class_name(name)
+        except:
+            raise ElementNotFound("Failed to locate: {}, using: {}".format('class ', name))
 
     def return_title(self):
         '''
@@ -187,3 +207,9 @@ class WebdriverCommands(ParametrizedTestCase):
             WebDriverWait(self.driver,time).until(EC.invisibility_of_element_located((By.CSS_SELECTOR, selector)))
         except:
             raise ElementNotFound(selector,description)
+
+    # def wait_for_element_to_appear(self, selector, description, time= ELEMENT_WAIT):
+    #     try:
+    #         WebDriverWait(self.driver,time).until(EC.invisibility_of_element_located((By.CSS_SELECTOR, selector))) todo
+    #     except:
+    #         raise ElementNotFound(selector,description)

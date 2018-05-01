@@ -81,11 +81,6 @@ class ScRegistationPage:
         # self.page.change_element_class('bordered-box pitch clearfix starterkit-wrapper-active', 'div.register-ajax > div.starter-kit.pj-stylist > div:nth-child(5)')
 
     def select_payment_option(self, holder):
-        # self.page.click_element(SC_REG_BANK_PAYMENT_OPTION['css_selector'], SC_REG_BANK_PAYMENT_OPTION['description'])
-        # self.page.wait_a_second(10)
-        # # self.page.click_element(SC_PAY_BUTTON['css_selector'], SC_PAY_BUTTON['description'])
-        # self.page.move_to_element_css('#pmmdetails-bankTransfer_DE > table > tbody > tr:nth-child(2) > td > div > input')
-
         self.page.click_element(SC_REG_CARD_PAYMENT_OPTION['css_selector'], SC_REG_CARD_PAYMENT_OPTION['description'])
         try:
             self.page.click_element('#card.cardNumb', 'Waiting..', 5)
